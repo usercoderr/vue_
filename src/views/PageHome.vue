@@ -30,7 +30,7 @@ const addNewInterview = async (): Promise<void> => {
     const userId = getAuth().currentUser?.uid
 
     if (userId) {
-        await setDoc(doc(db, `users/${userId}/interviews`, payload.id), payload).then(() =>{
+        await setDoc(doc(db, `users/${userId}/interviews`, payload.id), payload).then(() => {
             router.push('/list')
         })
     }
@@ -43,19 +43,19 @@ const disabledSaveBtn = computed<boolean>(() => {
 <template>
 
     <div class="flex flex-column mx-4">
-        <h2 class="mb-4"> New Interview</h2>
-        <app-inputtext class="mb-3" v-model="company" placeholder="Company" type="text"/>
-        <app-inputtext class="mb-3" v-model="description" placeholder="Description (link)" type="text"/>
-        <app-inputtext class="mb-3" v-model="hrName" placeholder="HR (name)" type="text"/>
-        <app-inputtext class="mb-3" v-model="contactTelegram" placeholder="Telegram (hr)" type="text"/>
-        <app-inputtext class="mb-3" v-model="contactWhatsapp" placeholder="Whats'app (hr)" type="text"/>
-        <app-inputtext class="mb-3" v-model="contactPhone" placeholder="Phone number (hr)" type="text"/>
-        <app-button
-                @click="addNewInterview"
-                label="Create"
-                :disabled="disabledSaveBtn"
-                :loading="loading"
-        />
+            <h2 class="mb-4"> New Interview</h2>
+            <app-inputtext class="mb-3" v-model="company" placeholder="Company" type="text"/>
+            <app-inputtext class="mb-3" v-model="description" placeholder="Description (link)" type="text"/>
+            <app-inputtext class="mb-3" v-model="hrName" placeholder="HR (name)" type="text"/>
+            <app-inputtext class="mb-3" v-model="contactTelegram" placeholder="Telegram (hr)" type="text"/>
+            <app-inputtext class="mb-3" v-model="contactWhatsapp" placeholder="Whats'app (hr)" type="text"/>
+            <app-inputtext class="mb-3" v-model="contactPhone" placeholder="Phone number (hr)" type="text"/>
+            <app-button
+                    @click="addNewInterview"
+                    label="Create"
+                    :disabled="disabledSaveBtn"
+                    :loading="loading"
+            />
     </div>
 </template>
 <style scoped>

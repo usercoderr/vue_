@@ -18,6 +18,11 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import ConfirmDialog from "primevue/confirmdialog";
 import Message from "primevue/message";
+import Card from "primevue/card";
+import InputNumber from "primevue/inputnumber";
+import Textarea from "primevue/textarea";
+import DatePicker from "primevue/datepicker";
+import RadioButton from "primevue/radiobutton";
 
 
 initializeApp(firebaseConfig);
@@ -36,8 +41,13 @@ app.component('app-progress', ProgressSpinner)
 app.component('app-button', Button)
 app.component('app-datatable', DataTable)
 app.component('app-column', Column)
+app.component('app-card', Card)
 app.component('app-dialog', ConfirmDialog)
 app.component('app-inputtext', InputText)
+app.component('app-textarea', Textarea)
+app.component('app-inputnumber', InputNumber)
 app.component('app-message', Message)
+app.component('app-calendar', DatePicker)
+app.component('app-radio', RadioButton)
 
 app.mount('#app')

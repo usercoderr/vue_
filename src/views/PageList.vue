@@ -58,7 +58,11 @@ onMounted(async () => {
 <template>
     <app-dialog/>
     <app-progress v-if="isLoading"/>
-    <app-message class="mx-4" v-else-if="!isLoading && !interviews.length" severity="info">No Interviews</app-message>
+    <app-message
+            class="mx-4"
+            v-else-if="!isLoading && !interviews.length"
+            severity="info">No Interviews
+    </app-message>
     <div v-else class="mx-4">
         <h2>List</h2>
         <app-datatable :value="interviews">
