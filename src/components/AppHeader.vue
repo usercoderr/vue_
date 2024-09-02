@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {computed, ref} from "vue";
-import type {IMenuItem} from "@/types/items";
+import type {IMenuItem} from "@/interfaces";
 import {useUserStore} from "@/stores/auth";
 import {getAuth, signOut} from "firebase/auth";
 import router from "@/router";
