@@ -15,6 +15,15 @@ export interface IInterview {
     contactTelegram?: string,
     contactWhatsApp?: string,
     contactPhone?: string,
-    cratedAt: Date
+    cratedAt: Date,
+    salaryFrom?:number,
+    salaryTo?:number,
+    stages?:IStage[]
+    result?: 'Refusal' | 'Offer'
 
+}
+export interface IStage{
+    name:string
+    date:null | Date
+    comment:string
 }
