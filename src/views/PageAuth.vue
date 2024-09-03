@@ -85,11 +85,6 @@ const submitForm = (): void => {
                 </app-button>
             </div>
         </form>
-        <div class="google">
-            <app-button>{{ submitBtnText }}
-                <span class="icon-google pi pi-google"/>
-            </app-button>
-        </div>
 
     </div>
 </template>
