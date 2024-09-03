@@ -49,10 +49,8 @@ const saveInterview = async (): Promise<void> => {
 onMounted(async () => await getData())
 const addStage = () => {
     if (interview.value) {
-        if (!interview.value?.stages) {
-            if ("stages" in interview.value) {
-                interview.value.stages = []
-            }
+        if (!interview.value.stages) {
+            interview.value.stages = []
         }
         interview.value?.stages.push({name: '', date: null, comment: ''})
     }
