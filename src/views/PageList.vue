@@ -126,50 +126,50 @@ onMounted(async () => {
             </app-column>
             <app-column header="Contacts">
                 <template #body="slotProps">
-                        <app-badge
+                    <app-badge
                             class="mr-1 badge-no-bg"
                             v-if="slotProps.data.contactTelegram"
                             :value="1"
                             v-tooltip.top="'Telegram: ' + slotProps.data.contactTelegram"
-                        >
-                            <a
+                    >
+                        <a
                                 :href="`https://t.me/${slotProps.data.contactTelegram}`"
                                 target="_blank"
-                            >
-                                <span class="pi pi-telegram"></span>
-                            </a>
-                        </app-badge>
+                        >
+                            <span class="pi pi-telegram"></span>
+                        </a>
+                    </app-badge>
 
-                        <app-badge
+                    <app-badge
                             class="mr-1 badge-no-bg"
                             v-if="slotProps.data.contactWhatsApp"
                             rounded
                             :value="2"
                             v-tooltip.top="'WhatsApp: ' + slotProps.data.contactWhatsApp"
-                        >
-                            <a
+                    >
+                        <a
                                 :href="`https://wa.me/${slotProps.data.contactWhatsApp}`"
                                 target="_blank"
-                            >
-                                <span class="pi pi-whatsapp"></span>
-                            </a>
-                        </app-badge>
+                        >
+                            <span class="pi pi-whatsapp"></span>
+                        </a>
+                    </app-badge>
 
-                        <app-badge
+                    <app-badge
                             class="mr-1 badge-no-bg"
                             v-if="slotProps.data.contactPhone"
                             rounded
                             :value="3"
                             v-tooltip.top="'Phone: ' + slotProps.data.contactPhone"
-                        >
-                            <a
-                                :href="`https://t.me/${slotProps.data.contactPhone}`"
+                    >
+                        <a
+                                :href="`tel:${slotProps.data.contactPhone}`"
                                 target="_blank"
-                            >
-                                <span class="pi pi-phone"></span>
-                            </a>
-                        </app-badge>
-                    </template>
+                        >
+                            <span class="pi pi-phone"></span>
+                        </a>
+                    </app-badge>
+                </template>
             </app-column>
             <app-column header="Stages">
                 <template #body="slotProps">
