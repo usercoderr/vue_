@@ -18,6 +18,12 @@ const interviews = ref<IInterview[]>([])
 const isLoading = ref<boolean>(false)
 const selectedFilterResult = ref<string>('')
 
+const cancelFilter = async (): Promise<void> => {
+    selectedFilterResult.value = ''
+    isLoading.value = true
+    interviews.value = await getAllInterviews(false)
+    isLoading.value = false
+}
 const submitFilter = async (): Promise<void> => {
     isLoading.value = true
     interviews.value = await getAllInterviews(true)
@@ -99,6 +105,7 @@ onMounted(async () => {
                     label="Apply"
             />
             <app-button
+                    @click="cancelFilter"
                     :disabled="!selectedFilterResult"
                     class="mr-2"
                     label="Cancel"
