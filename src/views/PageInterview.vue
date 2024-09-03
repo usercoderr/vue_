@@ -12,7 +12,7 @@ import type {IInterview, IStage} from "@/interfaces";
 const db = getFirestore()
 const userStore = useUserStore()
 const route = useRoute()
-const interview = ref<IInterview>()
+const interview = ref<IInterview | null>(null)
 const isLoading = ref<boolean>(true)
 const docref = doc(db, `users/${userStore.userId}/interviews`, route.params.id as string)
 
@@ -50,7 +50,9 @@ onMounted(async () => await getData())
 const addStage = () => {
     if (interview.value) {
         if (!interview.value?.stages) {
-            interview.value.stages = []
+            if ("stages" in interview.value) {
+                interview.value.stages = []
+            }
         }
         interview.value?.stages.push({name: '', date: null, comment: ''})
     }
@@ -72,7 +74,7 @@ const removeStage = (index: number) => {
         <div v-else-if="interview?.id && !isLoading">
             <app-card>
                 <template #title>
-                    Interview in {{ interview?.company }}
+                    Interview in {{ interview.company }}
                 </template>
                 <template #content>
                     <div class="flex flex-column gap-2">
@@ -140,7 +142,7 @@ const removeStage = (index: number) => {
                                         :for="`stageComment-${index}`">Comment</label>
                                 <app-textarea
                                         class="mb-3"
-                                        v-model="stage.description"
+                                        v-model="stage.comment"
                                         dataformatas="dd.mm.yy"
                                         :id="`stageComment-${index}`"/>
                             </div>
