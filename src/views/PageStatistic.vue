@@ -1,5 +1,5 @@
 <template>
-    <h1>sds</h1>
+    <h1 class="mx-4">Statistic</h1>
     <div class="card mx-4 flex justify-content-center align-items-center">
         <app-chart
                 class="w-full md:w-30rem"
