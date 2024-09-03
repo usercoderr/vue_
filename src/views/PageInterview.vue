@@ -150,6 +150,7 @@ const removeStage = (index: number) => {
                     <div class="flex  gap-3 mb-3">
                         <div class="flex align-items-center">
                             <app-radio
+                                    class="mr-1"
                                     v-model="interview.result"
                                     inputId="interviewResult1"
                                     name="result"
@@ -159,6 +160,7 @@ const removeStage = (index: number) => {
                         </div>
                         <div class="flex align-items-center">
                             <app-radio
+                                    class="mr-1"
                                     v-model="interview.result"
                                     inputId="interviewResult2"
                                     name="result"
