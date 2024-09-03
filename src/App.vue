@@ -11,10 +11,10 @@ onMounted(() => {
     onAuthStateChanged(getAuth(), (user) => {
         if (user) {
             userStore.userId = user.uid
-        }else {
+        } else {
             userStore.userId = ''
         }
-        isLoading.value=false
+        isLoading.value = false
     })
 })
 </script>
@@ -23,8 +23,7 @@ onMounted(() => {
     <div class="container">
         <app-header/>
     </div>
-    <app-progress v-if="isLoading"/>
-    <div v-else class="content">
+    <div class="content">
         <RouterView/>
     </div>
 </template>

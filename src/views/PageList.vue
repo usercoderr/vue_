@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
-import {collection, deleteDoc, doc,
+import {
+    collection, deleteDoc, doc,
     getDocs, getFirestore, orderBy,
-    query, where} from 'firebase/firestore'
+    query, where
+} from 'firebase/firestore'
 import type {IInterview} from "@/interfaces";
 import {useUserStore} from "@/stores/auth";
 import {useConfirm} from "primevue/useconfirm";
@@ -59,6 +61,7 @@ const getAllInterviews = async <T extends IInterview>(isFilter?: boolean): Promi
 }
 
 onMounted(async () => {
+    isLoading.value = true
     interviews.value = await getAllInterviews()
     isLoading.value = false
 })
@@ -66,13 +69,7 @@ onMounted(async () => {
 
 <template>
     <app-dialog/>
-    <app-progress v-if="isLoading"/>
-    <app-message
-            class="mx-4"
-            v-else-if="!isLoading && !interviews.length"
-            severity="info">No Interviews
-    </app-message>
-    <div v-else class="mx-4">
+    <div class="mx-4">
         <h2>List</h2>
         <div class="flex align-items-center mb-5">
             <div class="flex align-items-center mr-3">
@@ -108,7 +105,9 @@ onMounted(async () => {
                     severity="danger"
             />
         </div>
-        <app-datatable :value="interviews">
+        <app-progress class="flex justify-content-center align-items-center" v-if="isLoading"/>
+
+        <app-datatable v-else :value="interviews">
             <app-column field="company" header="Company"></app-column>
             <app-column field="hrName" header="Hr Name"></app-column>
             <app-column field="vacancyLink" header="Link">
