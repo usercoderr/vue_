@@ -20,11 +20,11 @@ onMounted(() => {
 </script>
 
 <template>
-    <app-progress v-if="isLoading"/>
-    <div v-else class="container">
+    <div class="container">
         <app-header/>
     </div>
-    <div class="content">
+    <app-progress v-if="isLoading"/>
+    <div v-else class="content">
         <RouterView/>
     </div>
 </template>
