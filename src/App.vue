@@ -29,7 +29,7 @@ onMounted(() => {
 </template>
 <style>
 .container {
-    max-width: 1440px;
+    width: 100%;
     padding: 20px;
 }
 </style>

@@ -66,6 +66,8 @@ const signOutMethod = async (): Promise<void> => {
 </template>
 <style scoped>
 .menu {
+    display: flex;
+    width: 100%;
     background: #67c2c2;
     padding: 30px 20px;
 }
