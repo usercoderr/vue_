@@ -29,10 +29,25 @@ const signIn = async (): Promise<void> => {
     isLoading.value = true
     try {
         await signInWithEmailAndPassword(getAuth(), email.value, password.value)
-        await router.push('/')
+        toast.add({
+            severity: 'success',
+            summary: 'Success Message',
+            detail: 'Success!!!',
+            group: 'br',
+            life: 3000
+        });
+        setTimeout(async () => {
+            await router.push('/')
+        }, 1600)
     } catch (e: unknown) {
         if (e instanceof Error) {
-            console.log(e.message)
+            toast.add({
+                severity: 'error',
+                summary: 'Error Message',
+                detail: `${e.message}`,
+                group: 'br',
+                life: 3000
+            });
         }
     } finally {
         isLoading.value = false
