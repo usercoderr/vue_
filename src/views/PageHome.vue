@@ -5,7 +5,9 @@ import {v4 as uuidv4} from 'uuid'
 import {getAuth} from "firebase/auth";
 import {getFirestore, doc, setDoc} from "firebase/firestore";
 import {useRouter} from "vue-router";
+import {useToast} from "primevue/usetoast";
 
+const toast = useToast();
 const router = useRouter()
 const db = getFirestore()
 const company = ref<string>('')
@@ -31,7 +33,17 @@ const addNewInterview = async (): Promise<void> => {
 
     if (userId) {
         await setDoc(doc(db, `users/${userId}/interviews`, payload.id), payload).then(() => {
-            router.push('/list')
+            toast.add({
+                severity: 'success',
+                summary: 'Success Message',
+                detail: 'Success!!!',
+                group: 'br',
+                life: 3000
+            });
+            setTimeout(() => {
+
+                router.push('/list')
+            }, 1200)
         })
     }
 }
@@ -41,7 +53,7 @@ const disabledSaveBtn = computed<boolean>(() => {
 </script>
 
 <template>
-
+    <app-toast position="bottom-right" group="br"/>
     <div class="flex flex-column mx-4">
         <h2 class="mb-4"> New Interview</h2>
         <app-inputtext class="mb-3" v-model="company" placeholder="Company" type="text"/>

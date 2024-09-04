@@ -2,7 +2,9 @@
 import {computed, ref} from "vue";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 import {useRouter} from "vue-router";
+import {useToast} from "primevue/usetoast";
 
+const toast = useToast();
 const router = useRouter()
 const email = ref<string>('')
 const password = ref<string>('')
@@ -12,15 +14,14 @@ const toggleAuth = () => {
     isLogin.value = !isLogin.value
 }
 
+
 const subTitleText = computed<string>(() => {
     return isLogin.value ? 'Еще нет аккаунта ?' : "Уже есть аккаунт?"
 })
 const linkAccountText = computed<string>(() => {
     return isLogin.value ? 'Создайте сейчас ?' : "Войти в аккаунт!"
 })
-const submitBtnText = computed<string>(() => {
-    return isLogin.value ? 'Login with' : "Continue with"
-})
+
 const loginText = computed<string>(() => {
     return isLogin.value ? 'Login' : "Sign Up"
 })
@@ -41,7 +42,16 @@ const signUp = async (): Promise<void> => {
     isLoading.value = true
     try {
         await createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-        await router.push('/')
+        toast.add({
+            severity: 'success',
+            summary: 'Success Message',
+            detail: 'Congratulations!!!',
+            group: 'br',
+            life: 3000
+        });
+        setTimeout(async () => {
+            await router.push('/')
+        }, 1600)
     } catch (e: unknown) {
         if (e instanceof Error) {
             console.log(e.message)
@@ -63,10 +73,10 @@ const submitForm = (): void => {
 <template>
     <div class="container">
         <h2>{{ loginText }}</h2>
+        <app-toast position="bottom-right" group="br"/>
         <h4 class="my-2">{{ subTitleText }}</h4>
         <a class="cursor-pointer" @click="toggleAuth">{{ linkAccountText }}</a>
         <form @submit.prevent="submitForm" class="box">
-
             <div class="input">
 
                 <label for="email">E-Mail:</label>

@@ -26,6 +26,9 @@ import RadioButton from "primevue/radiobutton";
 import Badge from "primevue/badge";
 import Tooltip from "primevue/tooltip";
 import Chart from "primevue/chart";
+import ToastService from 'primevue/toastservice';
+import Toast from "primevue/toast";
+
 
 
 initializeApp(firebaseConfig);
@@ -37,6 +40,7 @@ app.use(PrimeVue, {
         preset: Aura
     }
 });
+app.use(ToastService);
 app.use(ConfirmationService)
 app.directive('tooltip', Tooltip)
 app.use(router)
@@ -55,5 +59,6 @@ app.component('app-calendar', DatePicker)
 app.component('app-radio', RadioButton)
 app.component('app-badge', Badge)
 app.component('app-chart', Chart)
+app.component('app-toast', Toast)
 
 app.mount('#app')
